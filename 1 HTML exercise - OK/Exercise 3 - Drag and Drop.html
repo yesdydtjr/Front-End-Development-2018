@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<style>
+.droptarget {
+    float: up; 
+    width: 300px; 
+    height: 200px;
+    margin: 15px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+</style>
+</head>
+
+<body>
+
+<p>Drag the products you want to buy to shopping bag</p>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+ <h4>Shopping basket</h4>
+  <p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Iphone X</p>
+    <p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Motorola Moto X</p>
+</div>
+
+<div class="droptarget" ondrop="drop(event)" ondragover="allowDrop(event)">
+<h4>Products:</h4>
+<p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Samsung Galaxy J5</p>
+<p ondragstart="dragStart(event)" draggable="true" id="dragtarget">Nokia 8</p>
+</div>
+
+
+<script>
+function dragStart(event) {
+    event.dataTransfer.setData("Text", event.target.id);
+    document.getElementById("demo").innerHTML = "Started to drag the p element";
+}
+
+function allowDrop(event) {
+    event.preventDefault();
+}
+
+function drop(event) {
+    event.preventDefault();
+    var data = event.dataTransfer.getData("Text");
+    event.target.appendChild(document.getElementById(data));
+    document.getElementById("demo").innerHTML = "The p element was dropped";
+}
+</script>
+
+</body>
+
+</html>
